@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Mazafard/url-shortener.svg?branch=master)](https://travis-ci.org/Mazafard/url-shortener)
 [![Requirements Status](https://requires.io/github/Mazafard/url-shortener/requirements.svg?branch=master)](https://requires.io/github/Mazafard/url-shortener/requirements/?branch=master)
 
-<img src="https://raw.githubusercontent.com/Mazafard/url-shortener/master/asal.png?raw=true"/>
+<img src="https://raw.githubusercontent.com/Mazafard/url-shortener/release/1/asal.png?raw=true"/>
 
 The fastest way to reduce the length of URLs with statistics
 
