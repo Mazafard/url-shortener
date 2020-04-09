@@ -1,6 +1,7 @@
 # url-shortener
 [![Build Status](https://travis-ci.org/Mazafard/url-shortener.svg?branch=master)](https://travis-ci.org/Mazafard/url-shortener)
 [![Requirements Status](https://requires.io/github/Mazafard/url-shortener/requirements.svg?branch=master)](https://requires.io/github/Mazafard/url-shortener/requirements/?branch=master)
+[![codecov](https://codecov.io/gh/Mazafard/url-shortener/branch/master/graph/badge.svg)](https://codecov.io/gh/Mazafard/url-shortener)
 
 <img src="https://raw.githubusercontent.com/Mazafard/url-shortener/release/1/asal.png?raw=true"/>
 
