@@ -6,8 +6,11 @@ python:
 install:
   - pip install -r requirements.txt
   - python manage.py migrate
+  - codecov --token=CODECOV_TOKEN
 # command to run tests
 script:
   - python3 manage.py test --verbosity 2
+env:
+  - CODECOV_TOKEN="3ba29512-2404-4f50-8df9-8dee05c90f4b"
 
 
