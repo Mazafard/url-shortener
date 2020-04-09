@@ -1,4 +1,7 @@
 # url-shortener
+[![Build Status](https://travis-ci.org/Mazafard/url-shortener.svg?branch=master)](https://travis-ci.org/Mazafard/url-shortener)
+[![Requirements Status](https://requires.io/github/Mazafard/url-shortener/requirements.svg?branch=master)](https://requires.io/github/Mazafard/url-shortener/requirements/?branch=master)
+
 The fastest way to reduce the length of URLs with statistics
 
 
