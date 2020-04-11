@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+  db:
+   restart: always
+   image: percona
+   env_file:
+     - docker.env
+   volumes:
+    - ../storage/db:/var/lib/mysql
+   command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+  uwsgi:
+    image: registry.github.com/mazafard/shortener:$VERSION
+    restart: always
+    env_file:
+      - docker.env
+
+    volumes:
+      - ../storage/uploads:/var/www/uploads
+    links:
+     - db
+    command: ["uwsgi", "--module=shortener.wsgi:application", "--processes=4", "--protocol=http"]
+
+  nginx:
+     image: registry.github.com/mazafard/shortener:$VERSION
+     restart: always
+     links:
+      - uwsgi
+     env_file:
+       - docker.env
+
+     volumes:
+       - ../storage/uploads:/var/www/uploads
+
+     command: ["nginx"]
+     ports:
+      - 7575:80
+      - 7574:8080

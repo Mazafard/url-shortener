@@ -3,8 +3,13 @@ import string
 
 import django
 from django.contrib.auth.models import User
+from django.core import cache
 from django.core.validators import URLValidator
 from django.db import models
+from django.urls import reverse
+from django_redis import get_redis_connection
+from django_redis.pool import ConnectionFactory
+from redis import ConnectionPool
 
 from shortener import settings
 
@@ -34,6 +39,10 @@ class Url(BaseModel):
         verbose_name='uri'
     )
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular url instance."""
+        return reverse('url-detail', args=[str(self.id)])
+
     @classmethod
     def get_by_uri(cls: 'Url', uri: str) -> 'Url':
         return cls.objects.filter(uri=uri).first()
@@ -59,6 +68,15 @@ class Url(BaseModel):
         if self._state.adding:
             try:
                 self.custom_uri()
+                con = get_redis_connection('redis')
+                # con.set(self.uri, 'self')
+                data = {
+                    "link": self.link,
+                    "user": self.user_id,
+                    "view": 0
+                }
+                con.hmset(self.uri, data)
+
                 return super().save(*args, **kwargs)
             except django.db.utils.IntegrityError as e:
                 print(e)
@@ -70,3 +88,36 @@ class Url(BaseModel):
 
     def __str__(self: 'Url') -> str:
         return self.link
+
+
+class SessionVisit(BaseModel):
+    visit_date = models.DateTimeField(
+        verbose_name='visit date',
+    )
+    url = models.ForeignKey(
+        Url,
+        on_delete=models.DO_NOTHING
+    )
+    session = models.ForeignKey(
+        'Session',
+        on_delete=models.DO_NOTHING
+
+    )
+
+
+class Session(BaseModel):
+    url = models.ManyToManyField(
+        to=Url,
+        related_name='sessions',
+        verbose_name='url',
+        through=SessionVisit
+    )
+    browser = models.CharField(
+        max_length=255
+    )
+    device = models.CharField(
+        max_length=255
+    )
+    os = models.CharField(
+        max_length=255
+    )

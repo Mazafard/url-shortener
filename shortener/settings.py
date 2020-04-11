@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
+    'django_celery_results',
+    'django_celery_beat',
+    'influxdb_metrics',
 
     'service',
 ]
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'shortener.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +80,22 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "redis": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
     }
 }
 
@@ -112,7 +132,39 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 BASE_SYSTEM_URL = os.getenv('_BASE_SYSTEM_URL', 'http://localhost:8000/')
+
+REGISTRATION_OPEN = True  # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
+LOGIN_REDIRECT_URL = '/'  # The page you want users to arrive at after they successful log in
+LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,
+# and are trying to access pages requiring authentication
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+
+INFLUXDB_HOST = 'your.influxdbhost.com'
+INFLUXDB_PORT = '8086'
+INFLUXDB_USER = 'youruser'
+INFLUXDB_PASSWORD = 'yourpassword'
+INFLUXDB_DATABASE = 'yourdatabase'
+
+# This is for tagging the data sent to your influxdb instance so that you
+# can query by host
+INFLUXDB_TAGS_HOST = 'your_hostname'
+
+# Seconds to wait for the request to the influxdb server before timing out
+INFLUXDB_TIMEOUT = 5
+
+# Set this to True if you are using Celery
+INFLUXDB_USE_CELERY = True
+
+# Set this to True if you are not using Celery
+INFLUXDB_USE_THREADING = False
