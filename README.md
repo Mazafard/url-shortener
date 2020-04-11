@@ -17,9 +17,9 @@ The fastest way to reduce the length of URLs with statistics
     - [x] handle duplicate uri
     - [x] add hash URLs in redis
  
-- [ ] Redirect
+- [x] Redirect
     - [x] fetch URL data in redis
-    - [ ] add visitor data in redis
+    - [X] add visitor data in redis
     - [ ] run command to collect data from redis to MYSQL 
 
-- [ ] Analytics
+- [X] Analytics
