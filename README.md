@@ -15,10 +15,10 @@ The fastest way to reduce the length of URLs with statistics
 - [x] Create Short URL
     - [x] handle custom uri
     - [x] handle duplicate uri
-    - [ ] add hash URLs in redis
+    - [x] add hash URLs in redis
  
 - [ ] Redirect
-    - [ ] fetch URL data in redis
+    - [x] fetch URL data in redis
     - [ ] add visitor data in redis
     - [ ] run command to collect data from redis to MYSQL 
 

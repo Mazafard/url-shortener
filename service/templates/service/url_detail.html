@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}list Ur {{ url.uri }}l{% endblock %}
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            {% if url %}
+                <table class="table">
+                    <tr>
+                        <td>link</td>
+                        <td>{{ url.link }}</td>
+                    </tr>
+                    <tr>
+                        <td>user</td>
+                        <td>{{ url.user }}</td>
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}
+

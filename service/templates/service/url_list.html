@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}list Url{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-12">
+
+            {% if url_list %}
+                <table class="table">
+                    <tr>
+                        <td>id</td>
+                        <td>link</td>
+                        <td>uri</td>
+                        <td>created_at</td>
+                        <td>updated_at</td>
+                        <td>action</td>
+                    </tr>
+
+                    {% for url in url_list %}
+                        <tr>
+                            <td>{{ url.id }}</td>
+                            <td><a href="{{ url.get_absolute_url }}">{{ url.link }}</a></td>
+                            <td> {{ url.uri }}</td>
+                            <td> {{ url.created_at }}</td>
+                            <td> {{ url.updated_at }}</td>
+                            <td><a href="">edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>There are no url in here.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
+
+{#    {% if url_list %}#}
+{#        <ul>#}
+{##}
+{##}
+{#            <li>#}
+{##}
+{#            </li>#}
+{##}
+{##}
+{#        </ul>#}
+{##}
+{#    {% else %}#}
+{#        <p>There are no url in here.</p>#}
+{#    {% endif %}#}
+{#{% endblock content %}#}
+

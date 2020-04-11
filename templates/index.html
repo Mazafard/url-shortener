@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block nav-style %}mkt-nav{% endblock nav-style %}
+
+{% block content %}
+
+    {# Hero Section #}
+    <div class="mkt-s1">
+        <div class="mkt-s1-body container ">
+            <div class="row">
+                <h1 class="col-md-8">orem ipsum lorem ipsum </h1>
+            </div>
+            <div class="row">
+                <p class="col-md-8">A  orem ipsum lorem ipsum lorem ipsum lorem ipsum
+                lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+            </div>
+            <div class="row">
+                {# First Signup Link #}
+                <a href="{% url 'urls' %}"
+                   class="sign-up btn btn-success">view your urls!
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    {# Main Section #}
+    <div class="mkt-s2 container">
+        <h2 class="mkt-s2-h">orem ipsum lorem ipsum?</h2>
+        <div class="mkt-s2-body">
+            <div class="col-md-4 mkt-vp">
+                <img class="" src="{% static "images/clock.png"%}"/>
+                <h5>Save Time</h5>
+                <p>orem ipsum lorem ipsum lorem ipsum lorem ipsum
+                lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                </p>
+            </div>
+            <div class="col-md-4 mkt-vp">
+                <img class="" src='{%static "images/lightbulb.png"%}'/>
+                <h5>Stay Current</h5>
+                <p>orem ipsum lorem ipsum lorem ipsum lorem ipsum
+                lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+            </div>
+            <div class="col-md-4 mkt-vp">
+                <img class="" src='{% static "images/dollar.png" %}'/>
+                <h5>Win Business</h5>
+                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                .</p>
+            </div>
+        </div>
+        {# Second Signup Link #}
+        <a href="{% url 'registration_register' %}" class=" sgn-btm ">SIGN UP</a>
+    </div>
+
+{% endblock content %}
