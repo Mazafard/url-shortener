@@ -1,4 +1,4 @@
-Django==3.0.7
+Django==3.1.6
 model_bakery==1.1.0
 codecov==2.0.22
 django-redis-cache==2.1.0
