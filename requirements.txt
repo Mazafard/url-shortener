@@ -4,7 +4,7 @@ codecov==2.0.22
 django-redis-cache==2.1.0
 django-redis==4.11.0
 redis==3.4.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 django-registration-redux==2.7
 django-registration==3.1.2
 user-agents==2.1
