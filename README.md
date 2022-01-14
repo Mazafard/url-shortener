@@ -20,5 +20,6 @@ The fastest way to reduce the length of URLs with statistics
     - [x] fetch URL data in redis
     - [X] add visitor data in redis
     - [ ] run command to collect data from redis to MYSQL 
+    - [ ] Custom Domain support.
 
 - [X] Analytics
